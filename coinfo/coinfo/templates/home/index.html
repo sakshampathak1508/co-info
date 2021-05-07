@@ -1,0 +1,94 @@
+{% extends "home/basic.html" %}
+{%load static%}
+{%block title%}
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<div class="container my-4">
+    <div class="card-deck">
+        <div class="card">
+            <div class="image color">
+                <a style="width:auto; height: 232px;" href=" /beds/ ">
+                    <img  class="card-img-top image" src="{% static 'images/bed.jpg' %}" alt="Card image cap">
+                    <i class="fas fa-link"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><a href="/beds/" style="color: black; text-decoration: none;">
+                        Hospital Beds</a>
+                </h5>
+                <p class="card-text"></p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div class="card">
+            <div class="image color">
+                <a style="width:auto; height: 232px;" href="/oxygen/">
+                    <img class="card-img-top image" src="{% static 'images/oxygen.jpg' %}" alt="Card image cap">
+                    <i class="fas fa-link"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><a href="/oxygen/" style="color: black; text-decoration: none;">
+                        Oxygen Facilities</a>
+                </h5>
+                <p class="card-text"></p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div class="card">
+            <div class="image color">
+                <a style="width:auto; height: 232px;" href="/plasma/">
+                    <img  class="card-img-top image" src="{% static 'images/plasma.jpg' %}"
+                    alt="Card image cap">
+                    <i class="fas fa-link"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><a href="/plasma/" style="color: black; text-decoration: none;">
+                    Plasma Donation</a>
+                </h5>
+                <p class="card-text"></p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 2nd row -->
+<div class="container my-4">
+    <div class="card-deck">
+        <div class="card">
+            <div class="image color">
+                <a style="width:350px; height: 232px;" href="/medicines/">
+                    <img class="card-img-top image" src="{% static 'images/meds.jpg' %}" alt="Card image cap">
+                    <i class="fas fa-link"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><a href="/medicines/" style="color: black; text-decoration: none;">
+                        Medicines</a>
+                </h5>
+                <p class="card-text"></p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+        <div style="border: 0px;" class="card">
+            
+        </div>
+        <div style="border: 0px;" class="card">
+            
+        </div>
+    </div>
+</div>
+<script>
+    
+</script>
+{%endblock%}

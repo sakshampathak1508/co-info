@@ -1,0 +1,135 @@
+{% extends "home/basic.html" %}
+{%load static%}
+{%block title%}
+
+{%endblock%}
+
+{%block body%}
+<div class="container my-4">
+    <p>Here is the information regarding Plasma Donors verified by our team</p>
+    <form method="POST" action="/plasma/">
+        {%csrf_token%}
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="state">State</label>
+                <select name="state" id="state" class="form-control">
+                    <option value="" selected disabled>select</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                    <option value="Daman and Diu">Daman and Diu</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+                <br>
+                <h5>Blood Group</h5>
+                    <div class="custom-control custom-switch" style="display: inline;">
+                        <input type="checkbox" name="aplus" class="custom-control-input" id="aplus">
+                        <label class="custom-control-label" for="aplus">A+</label>
+                    </div>
+                    <div class="custom-control custom-switch" style="display: inline;">
+                        <input type="checkbox" name="bplus" class="custom-control-input" id="bplus">
+                        <label class="custom-control-label" for="bplus">B+</label>
+                    </div>
+                    <div class="custom-control custom-switch" style="display: inline;">
+                        <input type="checkbox" name="oplus" class="custom-control-input" id="oplus">
+                        <label class="custom-control-label" for="oplus">O+</label>
+                    </div>
+                    <div class="custom-control custom-switch" style="display: inline;">
+                        <input type="checkbox" name="abplus" class="custom-control-input" id="abplus">
+                        <label class="custom-control-label" for="abplus">AB+</label>
+                    </div>
+                    <div class="custom-control custom-switch" style="display: inline-block;">
+                        <input type="checkbox" name="aminus" class="custom-control-input" id="aminus">
+                        <label class="custom-control-label" for="aminus">A- </label>
+                    </div>
+                    <div class="custom-control custom-switch" style="display: inline-block;">
+                        <input type="checkbox" name="bminus" class="custom-control-input" id="bminus">
+                        <label class="custom-control-label" for="bminus">B- </label>
+                    </div>
+                    <div class="custom-control custom-switch" style="display: inline;">
+                        <input type="checkbox" name="ominus" class="custom-control-input" id="ominus">
+                        <label class="custom-control-label" for="ominus">O-</label>
+                    </div>
+                    <div class="custom-control custom-switch" style="display: inline;">
+                        <input type="checkbox" name="abminus" class="custom-control-input" id="abminus">
+                        <label class="custom-control-label" for="abminus">AB-</label>
+                    </div>
+            </div>
+            <div class="form-group col-md-4">
+                
+            </div>
+            <div class="form-group col-md-4">
+                
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+    <hr />
+    <a href="/plasma/"><button type="button" class="btn btn-info">Show All</button></a>
+    <div class="table-responsive">
+    <table class="table table-striped my-4">
+        <thead>
+            <tr>
+                <th scope="col">Blood Group</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Recovery Days</th>
+                <th scope="col">Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for p in plasma%}
+            <tr>
+                {%if p.is_available %}
+                <th scope="row">{{p.blood_group}}</th>
+                <td>{{p.name}}</td>
+                <td>{{p.city}}</td>
+                <td>{{p.state}}</td>
+                <td><span><a href="tel: {{p.number1}}" class="form-link">{{p.number1}}</a><a href="tel: {{p.number2}}" class="form-link">{{p.number2}}</a></span></td>
+                {%if p.days_since_recovery > 0 %}
+                    <td>{{p.days_since_recovery}}</td>
+                {%else%}
+                    <td>UnKnown</td>
+                {%endif%}
+                <td>{{p.time_stamp}}</td>
+                {%endif%}
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    </div>
+</div>
+{%endblock%}
